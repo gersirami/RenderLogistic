@@ -7,6 +7,9 @@ const storage = window.localStorage;
 const name = "RL_settings";
 export const useSettings = defineStore(name, {
   state: () => ({
+    app: {
+      activePanel: "render",
+    },
     count: 0,
     outputModules: [] as string[],
     selectedModule: "Please select one",

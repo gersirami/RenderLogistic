@@ -14,13 +14,11 @@ code {
 }
 
 .app {
-  background-color: $black;
-  margin: 0;
-  padding: 0;
+  // background-color: $black;
+  margin: 3px 6px 6px 6px;
 }
 
 .app-header {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,8 +34,10 @@ code {
 button {
   font-size: 0.65rem;
   color: $font;
+  height: 30px;
   background-color: $darker;
   padding: 0.5rem;
+  align-content: center;
   text-align: center;
   vertical-align: middle;
   border-radius: 3px;
@@ -68,45 +68,58 @@ button:active {
 }
 
 .nav-bar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: $darkest;
+  z-index: 1;
   display: flex;
   flex-direction: row;
   column-gap: 6px;
-  font-size: 32px;
-  background-color: $darkest;
-  padding: 0px 6px 0px 6px;
-  margin: 0;
+  font-size: 0.65rem;
 }
 
-.router-link-button {
+.page-content {
+  background-color: $black;
+  border-radius: 0 6px 6px 6px;
   display: flex;
-  margin:0;
-  padding: 0;
-  border-radius: 6px 6px 0 0;
-  width: auto;
   height: auto;
-  background-color: $darker;
-  border: none;
-  outline: none;
-}
-.router-link-button:hover {
-  background-color: $changed;
-  border: none;
-}
-.router-link-button:focus {
-  background-color: $black;
-  border: none;
-}
-.router-link-button:active {
-  margin:0;
-  background-color: $black;
-  border:none;
+  flex-direction: column;
+  padding: 12px 6px 6px 6px;
 }
 
 .routerLink {
-  text-decoration: inherit;
+  text-decoration: none;
+  color: $light;
   font-size: inherit;
-  color: inherit;
-  padding: 8px 15px;
+  font-weight: 600;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  border-radius: 8px 8px 0 0;
+  width: auto;
+  height: auto;
+  background-color: $darker;
+  outline: none;
+  padding: 8px 20px;
+}
+
+.routerLinkActive {
+  color: $primary;
+  background-color: $black;
+}
+
+.routerLink:hover {
+  background-color: $secondary;
+  color: $primary;
+}
+.routerLink:focus {
+  background-color: $black;
+}
+.routerLink:active {
+  background-color: $primary;
+  color: $darkest;
 }
 
 ::-webkit-scrollbar {
