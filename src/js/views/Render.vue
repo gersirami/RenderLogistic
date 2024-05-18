@@ -2,16 +2,6 @@
 // import { ref } from "vue";
 import { useSettings } from '../stores/settings';
 
-const today = new Date();
-const week = ['JAN','FEB','MAR','APR','MAY','JUNE','JUL','AUG','SEP','OCT','NOV','DEC'];
-const year = today.getFullYear().toString();
-const month = today.getMonth().toLocaleString("en-US",{minimumIntegerDigits:2})+'_'+week[today.getMonth()];
-const monthString = week[today.getMonth()];
-const day = today.getDate().toLocaleString("en-US",{minimumIntegerDigits:2});
-const fileName = day+'_'+monthString+'_'+year;
-
-const path = [year,month,day,fileName];
-
 const settings = useSettings();
 console.log(settings.pathCode);
 const refresh = () => location.reload();

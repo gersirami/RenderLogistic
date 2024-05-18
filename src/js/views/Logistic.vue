@@ -7,12 +7,6 @@ import { Icon } from '@iconify/vue';
 import { os, path } from "..//lib/cep/node";
 import Codemirror from '../components/Codemirror.vue';
 
-const testCode = ref(`var data = ["folderName"];\nreturn data;`);
-
-// const updateCode = (contentValue) => {
-//   code.value = contentValue;
-// };
-
 const settings = useSettings();
 const refresh = () => location.reload();
 function renderLogistic() {
@@ -63,13 +57,16 @@ function refreshOM() {
 
 <template>
   <div class="column">
-    <div class="row">
-      <input v-if="!getOS()" :value="settings.basePath" @input="(event) => setPath(event.target.value)">
-      <input v-if="getOS()" :value="settings.windowsPath" @input="(event) => setPath(event.target.value)">
-
-      <Button class="icon-button" @click="setPath()">
-        <Icon icon="solar:folder-path-connect-bold" width="20" color="#37C481" />
-      </Button>
+    <div>
+      <p class="title">Base Path</p>
+      <div class="row">
+        <input v-if="!getOS()" :value="settings.basePath" @input="(event) => setPath(event.target.value)">
+        <input v-if="getOS()" :value="settings.windowsPath" @input="(event) => setPath(event.target.value)">
+  
+        <button class="icon-button" @click="setPath()">
+          <Icon icon="solar:folder-path-connect-bold" height="fit" color="#37C481" />
+        </button>
+      </div>
     </div>
     <div>
       <p class="title">Custom Code Example</p>
@@ -85,14 +82,14 @@ function refreshOM() {
         <option v-for="(module, index) in settings.outputModules" :key="index">{{ module }}</option>
       </select>
       <button class="icon-button" @click="refreshOM">
-        <Icon icon="jam:refresh" width="20" color="#37C481" />
+        <Icon icon="jam:refresh" height="fit" color="#37C481" :inline="true" />
       </button>
     </div>
     <button @click="getSelectedProperty">
       Get Selected Layer or Property
     </button>
     <button @click="settings.$reset">
-      <Icon icon="solar:danger-triangle-bold" width="16" color="#FF3556" :inline="true" />
+      <Icon icon="solar:danger-triangle-bold" verticalAlign="middle" width="15" color="#FF3556" :inline="true" />
       Reset configuration
     </button>
   </div>
@@ -101,8 +98,8 @@ function refreshOM() {
 <style scoped>
 .title {
   display: flex;
-  margin: 0px 0px 2px 0px;
-  font-size: 10px;
+  margin: 0px 0px 1px 0px;
+  font-size: 9.5px;
   color: gray;
 }
 
@@ -110,7 +107,6 @@ function refreshOM() {
   display: flex;
   flex-direction: column;
   row-gap: 5px;
-  margin: 0 5px 0 5px;
 }
 
 .row {
@@ -125,7 +121,7 @@ select {
   width: 100%;
   padding: 5px;
   font-size: 0.7rem;
-  height: 30px;
+  height: 25px;
 }
 
 input {
@@ -134,6 +130,6 @@ input {
   width: 100%;
   padding: 6px;
   font-size: 0.7rem;
-  height: 30px;
+  height: 25px;
 }
 </style>

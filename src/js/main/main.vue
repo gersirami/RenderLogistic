@@ -20,18 +20,18 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="app" :style="{ backgroundColor: backgroundColor }">
+  <div class="app">
     <div class="nav-bar">
-      <router-link :to="{ name: 'render' }">
-        <button>
+      <button class="router-link-button">
+        <router-link class="routerLink" :to="{ name: 'render' }">
           Render
-        </button>
-      </router-link>
-      <router-link :to="{ name: 'logistic' }">
-        <button>
+        </router-link>
+      </button>
+      <button class="router-link-button">
+        <router-link class="routerLink" :to="{ name: 'logistic' }">
           Logistic
-        </button>
-      </router-link>
+        </router-link>
+      </button>
     </div>
     <div class="page-content">
       <RouterView />
@@ -40,18 +40,16 @@ onMounted(() => {
 </template>
 
 <style>
-.nav-bar>* {
-  font-size: 32px;
-  margin: 16px;
-}
 
 .page-content {
-  padding-top: 16px;
   display: flex;
+  height: 100vh;
   flex-direction: column;
+  margin: 6px;
 }
 
-.page-content>*:nth-child(-n+3) {
-  margin: 3px auto;
-}
+/* .page-content>*:nth-child(-n+3) {
+  margin: 3px auto;s
+} */
+
 </style>
