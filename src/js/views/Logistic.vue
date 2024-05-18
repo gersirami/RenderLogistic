@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { useSettings } from '../stores/settings';
 import { getOutputModules } from '../lib/utils/aeft';
-import { selectFolder } from '../lib/utils/bolt';
+import { evalTS, selectFolder } from '../lib/utils/bolt';
 import { Icon } from '@iconify/vue';
 import { os, path } from "..//lib/cep/node";
 import Codemirror from '../components/Codemirror.vue';
@@ -31,7 +31,9 @@ function getOS() {
 }
 
 function alertModule() {
-  alert(JSON.stringify(settings.pathCode));
+  evalTS("getSelectedPropertyPath",).then((res) => {
+    alert(res.toString());
+  });
 }
 
 function setPath(state?: any) {
@@ -87,7 +89,7 @@ function refreshOM() {
       </button>
     </div>
     <button @click="alertModule">
-      Alert Module
+      Get Selected Layer or Property
     </button>
     <button @click="settings.$reset">
       <Icon icon="solar:danger-triangle-bold" width="16" color="#FF3556" :inline="true" />

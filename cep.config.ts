@@ -7,9 +7,9 @@ const config: CEP_Config = {
   id: "com.RenderLogistic.cep",
   displayName: "Render Logistic",
   symlink: "local",
-  port: 3000,
+  port: 1399,
   servePort: 5000,
-  startingDebugPort: 8861,
+  startingDebugPort: 9999,
   extensionManifestVersion: 6.0,
   requiredRuntimeVersion: 9.0,
   hosts: [
@@ -21,7 +21,7 @@ const config: CEP_Config = {
   iconDarkNormalRollOver: "./src/assets/light-icon.png",
   iconNormalRollOver: "./src/assets/dark-icon.png",
   parameters: ["--v=0", "--enable-nodejs", "--mixed-context"],
-  width: 0,
+  width: 600,
   height: 550,
 
   panels: [
@@ -30,7 +30,7 @@ const config: CEP_Config = {
       name: "main",
       panelDisplayName: "Render Logistic",
       autoVisible: true,
-      width: 0,
+      width: 600,
       height: 650,
     },
 
@@ -40,9 +40,9 @@ const config: CEP_Config = {
     sourceMap: true,
   },
   zxp: {
-    country: "US",
-    province: "CA",
-    org: "MyCompany",
+    country: "AL",
+    province: "TR",
+    org: "prodata.dev",
     password: "mypassword",
     tsa: "http://timestamp.digicert.com/",
     sourceMap: false,

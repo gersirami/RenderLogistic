@@ -5,9 +5,9 @@ var config = {
   id: "com.RenderLogistic.cep",
   displayName: "Render Logistic",
   symlink: "local",
-  port: 3000,
+  port: 1399,
   servePort: 5000,
-  startingDebugPort: 8861,
+  startingDebugPort: 9999,
   extensionManifestVersion: 6.0,
   requiredRuntimeVersion: 9.0,
   hosts: [{
@@ -20,14 +20,14 @@ var config = {
   iconDarkNormalRollOver: "./src/assets/light-icon.png",
   iconNormalRollOver: "./src/assets/dark-icon.png",
   parameters: ["--v=0", "--enable-nodejs", "--mixed-context"],
-  width: 0,
+  width: 600,
   height: 550,
   panels: [{
     mainPath: "./main/index.html",
     name: "main",
     panelDisplayName: "Render Logistic",
     autoVisible: true,
-    width: 0,
+    width: 600,
     height: 650
   }],
   build: {
@@ -35,9 +35,9 @@ var config = {
     sourceMap: true
   },
   zxp: {
-    country: "US",
-    province: "CA",
-    org: "MyCompany",
+    country: "AL",
+    province: "TR",
+    org: "prodata.dev",
     password: "mypassword",
     tsa: "http://timestamp.digicert.com/",
     sourceMap: false,
@@ -50,11 +50,52 @@ var config = {
 
 var ns = config.id;
 
-var example = function example() {};
+var getSelectedPropertyPath = function getSelectedPropertyPath() {
+  var comp = app.project.activeItem;
+  function findDeepestSelectedProp() {
+    var deepestProp,
+      numDeepestProps = 0,
+      deepestPropDepth = 0;
+    for (var i = 0; i < comp.selectedProperties.length; i++) {
+      var prop = comp.selectedProperties[i];
+      if (prop.propertyDepth >= deepestPropDepth) {
+        if (prop.propertyDepth > deepestPropDepth) numDeepestProps = 0;
+        deepestProp = prop;
+        numDeepestProps++;
+        deepestPropDepth = prop.propertyDepth;
+      }
+    }
+    return numDeepestProps > 1 ? null : deepestProp;
+  }
+  var prop = findDeepestSelectedProp();
+  if (prop === null || prop === undefined || prop.value === undefined || comp.selectedLayers.length === 0) {
+    alert("Please select a single property that holds a value.");
+    return;
+  }
+  var scriptCode = "";
+  var currProp = prop;
+  while (currProp !== null) {
+    // Check for layer property on the parent (shape layer) first
+    if (currProp.propertyIndex < 1) {
+      scriptCode = ".layer(\"" + currProp.name + "\")" + scriptCode;
+    } else {
+      // If not a shape layer, use matchName for other properties
+      scriptCode = ".property(\"" + currProp.name + "\")" + scriptCode;
+      // scriptCode = ".property(" + currProp.propertyIndex + ")" + scriptCode;
+    }
+    currProp = currProp.parentProperty;
+  }
+  var compID = comp.id;
+  var fullPath = "app.project.itemByID(" + compID + ")" + scriptCode;
+  // var fullPathWithFunction = "(function() {return app.project.itemByID(" + compID + ")" + scriptCode + "})()";
+  // var val = eval(fullPath);
+  // alert(val);
+  return fullPath;
+};
 
 var aeft = /*#__PURE__*/__objectFreeze({
   __proto__: null,
-  example: example
+  getSelectedPropertyPath: getSelectedPropertyPath
 });
 
 var host = typeof $ !== "undefined" ? $ : window;
