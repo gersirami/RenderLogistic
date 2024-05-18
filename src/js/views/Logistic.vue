@@ -30,7 +30,7 @@ function getOS() {
   }
 }
 
-function alertModule() {
+function getSelectedProperty() {
   evalTS("getSelectedPropertyPath",).then((res) => {
     alert(res.toString());
   });
@@ -88,7 +88,7 @@ function refreshOM() {
         <Icon icon="jam:refresh" width="20" color="#37C481" />
       </button>
     </div>
-    <button @click="alertModule">
+    <button @click="getSelectedProperty">
       Get Selected Layer or Property
     </button>
     <button @click="settings.$reset">
