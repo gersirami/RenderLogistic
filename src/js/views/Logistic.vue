@@ -24,9 +24,9 @@ function getOS() {
   }
 }
 
-function getSelectedProperty() {
-  evalTS("getSelectedPropertyPath",).then((res) => {
-    alert(res.toString());
+function getSelectedLayers() {
+  evalTS("getSelectedAVLayers").then((res) => {
+    alert(res?.toString());
   });
 }
 
@@ -85,7 +85,7 @@ function refreshOM() {
         <Icon icon="jam:refresh" height="fit" color="#37C481" :inline="true" />
       </button>
     </div>
-    <button @click="getSelectedProperty">
+    <button @click="getSelectedLayers">
       Get Selected Layer or Property
     </button>
     <button @click="settings.$reset">

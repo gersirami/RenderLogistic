@@ -50,8 +50,31 @@ var config = {
 
 var ns = config.id;
 
+var getActiveComp = function getActiveComp() {
+  if (app.project.activeItem instanceof CompItem === false) {
+    var _app$activeViewer;
+    (_app$activeViewer = app.activeViewer) === null || _app$activeViewer === void 0 || _app$activeViewer.setActive();
+  }
+  return app.project.activeItem;
+};
+
+var getSelectedAVLayers = function getSelectedAVLayers() {
+  var _app$activeViewer;
+  (_app$activeViewer = app.activeViewer) === null || _app$activeViewer === void 0 || _app$activeViewer.setActive();
+  var activeItem = app.project.activeItem;
+  if (activeItem && activeItem instanceof CompItem === true && activeItem.selectedLayers.length) {
+    var selectedLayers = [];
+    for (var i = 0; i < activeItem.selectedLayers.length; i++) {
+      var item = activeItem.selectedLayers[i];
+      if (item instanceof AVLayer) {
+        selectedLayers.push(item);
+      }
+    }
+    return selectedLayers;
+  }
+};
 var getSelectedPropertyPath = function getSelectedPropertyPath() {
-  var comp = app.project.activeItem;
+  var comp = getActiveComp();
   function findDeepestSelectedProp() {
     var deepestProp,
       numDeepestProps = 0,
@@ -75,11 +98,9 @@ var getSelectedPropertyPath = function getSelectedPropertyPath() {
   var scriptCode = "";
   var currProp = prop;
   while (currProp !== null) {
-    // Check for layer property on the parent (shape layer) first
     if (currProp.propertyIndex < 1) {
       scriptCode = ".layer(\"" + currProp.name + "\")" + scriptCode;
     } else {
-      // If not a shape layer, use matchName for other properties
       scriptCode = ".property(\"" + currProp.name + "\")" + scriptCode;
       // scriptCode = ".property(" + currProp.propertyIndex + ")" + scriptCode;
     }
@@ -95,6 +116,7 @@ var getSelectedPropertyPath = function getSelectedPropertyPath() {
 
 var aeft = /*#__PURE__*/__objectFreeze({
   __proto__: null,
+  getSelectedAVLayers: getSelectedAVLayers,
   getSelectedPropertyPath: getSelectedPropertyPath
 });
 

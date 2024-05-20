@@ -73,7 +73,7 @@ button:active {
   left: 0;
   width: 100%;
   background-color: $darkest;
-  z-index: 1;
+  z-index: 99;
   display: flex;
   flex-direction: row;
   column-gap: 6px;
@@ -108,6 +108,7 @@ button:active {
 .routerLinkActive {
   color: $primary;
   background-color: $black;
+  border-bottom: $primary solid 1px;
 }
 
 .routerLink:hover {
