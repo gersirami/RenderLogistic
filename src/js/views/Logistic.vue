@@ -25,8 +25,8 @@ function getOS() {
 }
 
 function getSelectedLayers() {
-  evalTS("getSelectedAVLayers").then((res) => {
-    alert(res?.toString());
+  evalTS("getActiveOrSelectedCompItemIds").then((res) => {
+    alert(JSON.stringify(res));
   });
 }
 
