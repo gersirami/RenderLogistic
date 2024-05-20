@@ -19,7 +19,6 @@ export const getActiveOrSelectedCompItemIds = (): number[] | null => {
     let selectedCompIds: number[] = [];
     const activeComp = app.project.activeItem;
     const selection = app.project.selection;
-
     // If no compositions are selected, use the active composition
     if (activeComp instanceof CompItem) {
         selectedCompIds.push(activeComp.id);
