@@ -14,7 +14,6 @@ code {
 }
 
 .app {
-  // background-color: $black;
   margin: 3px 6px 6px 6px;
 }
 
@@ -32,14 +31,13 @@ code {
 }
 
 button {
+  display: block;
   font-size: 0.65rem;
   color: $font;
-  height: 30px;
+  height: 25px;
   background-color: $darker;
-  padding: 0.5rem;
   align-content: center;
   text-align: center;
-  vertical-align: middle;
   border-radius: 3px;
   border: solid 0.25px #434343;
   outline: none;
@@ -115,9 +113,7 @@ button:active {
   background-color: $secondary;
   color: $primary;
 }
-.routerLink:focus {
-  background-color: $black;
-}
+
 .routerLink:active {
   background-color: $primary;
   color: $darkest;
@@ -134,7 +130,7 @@ button:active {
 }
 ::-webkit-scrollbar-thumb {
   background: $darker;
-  border-radius: 5px;
+  border-radius: 0px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: $dark;
