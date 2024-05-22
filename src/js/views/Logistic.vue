@@ -6,6 +6,7 @@ import { evalTS, selectFolder } from '../lib/utils/bolt';
 import { Icon } from '@iconify/vue';
 import { os, path } from "..//lib/cep/node";
 import Codemirror from '../components/Codemirror.vue';
+import Fold from '../components/Fold.vue';
 
 const settings = useSettings();
 const refresh = () => location.reload();
@@ -57,34 +58,30 @@ function refreshOM() {
 
 <template>
   <div class="column">
-    <div>
-      <p class="title">Base Path</p>
+    <Fold label="Base Path" :open="true">
       <div class="row">
         <input v-if="!getOS()" :value="settings.basePath" @input="(event) => setPath(event.target.value)">
         <input v-if="getOS()" :value="settings.windowsPath" @input="(event) => setPath(event.target.value)">
-  
         <button class="icon-button" @click="setPath()">
           <Icon icon="solar:folder-path-connect-bold" height="fit" color="#37C481" />
         </button>
       </div>
-    </div>
-    <div>
-      <p class="title">Custom Code Example</p>
-      <Codemirror 
-      v-model:value="settings.pathCode"
-      max-height="200"
-      height="200"
-      />
-    </div>
-    <div class="row">
-      <select v-model="settings.selectedModule">
-        <option disabled value="Please select one">Please select one</option>
-        <option v-for="(module, index) in settings.outputModules" :key="index">{{ module }}</option>
-      </select>
-      <button class="icon-button" @click="refreshOM">
-        <Icon icon="jam:refresh" height="fit" color="#37C481" :inline="true" />
-      </button>
-    </div>
+    </Fold>
+    <Fold label="Custom Code Example" :open="true">
+      <Codemirror v-model:value="settings.pathCode" max-height="200" height="200" />
+    </Fold>
+    <Fold label="Render Preset" :open="true">
+      <div class="row">
+        <select v-model="settings.selectedModule">
+          <option disabled value="Please select one">Please select one</option>
+          <option v-for="(module, index) in settings.outputModules" :key="index">{{ module }}</option>
+        </select>
+        <button class="icon-button" @click="refreshOM">
+          <Icon icon="jam:refresh" height="fit" color="#37C481" :inline="true" />
+        </button>
+      </div>
+    </Fold>
+
     <button @click="getSelectedLayers">
       Get Selected Layer or Property
     </button>
