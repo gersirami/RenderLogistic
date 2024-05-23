@@ -1,5 +1,5 @@
 <template>
-  <div class="fold" :style="{ marginTop, margin, padding }">
+  <div class="fold">
     <div class="fold-label" @click="toggle">
       <div class="fold-icon" :class="{ flip: !isOpen }">
         <svg width="18" height="18" viewBox="0 0 24 24">
@@ -10,7 +10,7 @@
       <div class="fold-label-text">{{ label }}</div>
     </div>
     <div v-show="isOpen">
-      <div class="fold-content" :style="{ padding: innerPadding }">
+      <div class="fold-content">
         <slot />
       </div>
     </div>
@@ -31,10 +31,6 @@ export default {
     persistent: {
       type: Boolean,
       default: true,
-    },
-    innerPadding: {
-      type: String,
-      default: "",
     },
     prefsId: {
       type: String,
@@ -83,22 +79,17 @@ export default {
 </script>
 
 <style lang="scss">
+
 @import "../variables.scss";
+
 .fold {
-  border-bottom: solid $dark 0.1px;
+  border-bottom: solid $darker 1px;
   width: 100%;
   cursor: default;
   padding-bottom: 0;
   margin-bottom: 0 !important;
-  cursor: default;
   user-select: none;
-  color: $light;
-}
-
-.fold-content>.fold {
-  width: calc(100% - 10px);
-  padding: 10px;
-  
+  color: $fontDark;
 }
 
 .fold-label {
@@ -106,6 +97,7 @@ export default {
   display: flex;
   flex-wrap: none;
 }
+
 .fold-label:hover {
   background-color: $darkest;
 }
@@ -114,14 +106,14 @@ export default {
   user-select: none;
   text-align: left;
   font-size: 10px;
+  vertical-align: middle;
 }
 
 .fold-icon {
   float: right;
-  margin-top: -2px;
-  fill: $light;
-  height: 18px;
-  // transform-origin: 50% 50%;
+  fill: $fontDark;
+  height: 15px;
+  transform-origin: 50% 50%;
   transition: all 0.15s cubic-bezier(0, 0, 0.2, 1);
 }
 

@@ -67,7 +67,7 @@ function refreshOM() {
         </button>
       </div>
     </Fold>
-    <Fold label="Custom Code Example" :open="true">
+    <Fold label="Path Code" :open="true">
       <Codemirror v-model:value="settings.pathCode" max-height="200" height="200" />
     </Fold>
     <Fold label="Render Preset" :open="true">
